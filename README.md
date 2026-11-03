@@ -13,7 +13,8 @@ images for QEMU. The packages themselves come from
 
 Each release is one binary interface (ABI) of the kernel and the C library,
 and has its own archive tree on archive.nuttian.org (`poc-N`), so a system
-never mixes two. Each release has one download per architecture:
+never mixes two. Each release has one download per architecture. The
+first release has arm64; amd64 and riscv64 follow within days:
 
 | Architecture | Download | Runs fast on |
 |---|---|---|
@@ -43,7 +44,7 @@ key (the same key that signs the apt archive).
 2. Download and start:
 
    ```sh
-   ARCH=arm64     # or amd64, riscv64
+   ARCH=arm64     # amd64 and riscv64: within days
    curl -LO https://github.com/Nuttian/poc-releases/releases/latest/download/nuttian-nxsid-$ARCH.tar.xz
    tar xf nuttian-nxsid-$ARCH.tar.xz
    cd nuttian-nxsid-$ARCH
