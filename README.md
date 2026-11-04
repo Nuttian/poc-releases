@@ -78,10 +78,19 @@ work the same way, but we have not tested them yet: please tell us.
 ## Source code
 
 Every binary package in the images and in the archive comes from a source
-package in the same archive: `apt source <package>` in the guest, or the
-`pool/` of archive.nuttian.org. Each package's sheet on
-<https://packages.nuttian.org/> lists what Nuttian changes for NuttX, and
-why.
+package in the same archive. Each package's sheet on
+<https://packages.nuttian.org/> links its source files and lists what Nuttian
+changes for NuttX, and why.
+
+To get the source in the guest, first add `deb-src` to the source list, in
+a directory on the root file system (`/tmp` is small):
+
+```sh
+sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/nuttian.sources
+apt update
+apt install dpkg-dev
+apt source <package>
+```
 
 ## Reports and contact
 
