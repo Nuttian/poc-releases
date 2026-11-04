@@ -12,8 +12,8 @@ images for QEMU. The packages themselves come from
 ## Releases
 
 Each release is one binary interface (ABI) of the kernel and the C library,
-and has its own archive tree on archive.nuttian.org (`poc-N`), so a system
-never mixes two. Each release has one download per architecture:
+and has its own archive tree on archive.nuttian.org (this one is `poc-13`), so
+a system never mixes two. Each release has one download per architecture:
 
 | Architecture | Download | Runs fast on |
 |---|---|---|
