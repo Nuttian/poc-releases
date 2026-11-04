@@ -13,8 +13,7 @@ images for QEMU. The packages themselves come from
 
 Each release is one binary interface (ABI) of the kernel and the C library,
 and has its own archive tree on archive.nuttian.org (`poc-N`), so a system
-never mixes two. Each release has one download per architecture. The
-first release has arm64; amd64 and riscv64 follow within days:
+never mixes two. Each release has one download per architecture:
 
 | Architecture | Download | Runs fast on |
 |---|---|---|
@@ -27,9 +26,12 @@ QEMU emulates it (slower). `SHA256SUMS` lists the checksums of the
 downloads, and `SHA256SUMS.asc` is its signature with the Nuttian archive
 key (the same key that signs the apt archive).
 
+Tested on Apple silicon Macs and on x86-64 Linux. Intel Macs and WSL 2 should
+work the same way, but we have not tested them yet: please tell us.
+
 ## Try it
 
-1. Install QEMU:
+1. Install QEMU (on Linux you also need `python3`):
 
    ```sh
    brew install qemu                                    # macOS
@@ -44,7 +46,7 @@ key (the same key that signs the apt archive).
 2. Download and start:
 
    ```sh
-   ARCH=arm64     # amd64 and riscv64: within days
+   ARCH=arm64     # or amd64, riscv64
    curl -LO https://github.com/Nuttian/poc-releases/releases/latest/download/nuttian-nxsid-$ARCH.tar.xz
    tar xf nuttian-nxsid-$ARCH.tar.xz
    cd nuttian-nxsid-$ARCH
@@ -62,7 +64,7 @@ key (the same key that signs the apt archive).
    apt install build-essential
    ```
 
-   Leave QEMU with `Ctrl-a`, then `x`.
+   To leave, run `poweroff`, or press `Ctrl-a`, then `x`.
 
 ## Know before you try
 
