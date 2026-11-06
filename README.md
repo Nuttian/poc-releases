@@ -12,7 +12,7 @@ images for QEMU. The packages themselves come from
 ## Releases
 
 Each release is one binary interface (ABI) of the kernel and the C library,
-and has its own archive tree on archive.nuttian.org (this one is `poc-13`), so
+and has its own archive tree on archive.nuttian.org (this one is `poc-14`), so
 a system never mixes two. Each release has one download per architecture:
 
 | Architecture | Download | Runs fast on |
@@ -66,14 +66,21 @@ work the same way, but we have not tested them yet: please tell us.
 
    To leave, run `poweroff`, or press `Ctrl-a`, then `x`.
 
+   For the desktop, start with `./run.sh --gui`: it comes up by itself, with a
+   panel of icons: a terminal, the `lite-xl` editor and Freedoom. `./run.sh --help`
+   lists the other options, such as `--mem 4G` and `--res 1920x1080`.
+
 ## Know before you try
 
 - This is a proof of concept. Do not use it for anything that matters.
 - The binary interface can change between proof-of-concept releases.
 - The root file system is a folder on your computer, shared into the guest.
   Start one guest per folder.
-- No graphical desktop. Some Linux-only tools (procps, iproute2) have small
-  NuttX replacements (`nuttian-tools`).
+- A small desktop in software, with sound: `./run.sh --gui`. No 3D yet, and no
+  web browser. Sound needs CoreAudio on macOS, or a PipeWire or PulseAudio server
+  on Linux; otherwise the desktop runs silently.
+- Some Linux-only tools (procps, iproute2) have small NuttX replacements
+  (`nuttian-tools`).
 
 ## Source code
 
