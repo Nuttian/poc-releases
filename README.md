@@ -11,9 +11,12 @@ images for QEMU. The packages themselves come from
 
 ## Releases
 
-Each release is one binary interface (ABI) of the kernel and the C library,
-and has its own archive tree on archive.nuttian.org (this one is `poc-14`), so
-a system never mixes two. Each release has one download per architecture:
+The current release is **poc-14.1**. Each binary interface (ABI) of the
+kernel and the C library has its own archive tree on archive.nuttian.org, so a
+system never mixes two; poc-14.1 uses `poc-14`. A newer release of the same ABI
+(a point release) replaces the packages of its tree: then download its image, as an
+older image that installs or upgrades packages gets a C library that its
+kernel may not run. Each release has one download per architecture:
 
 | Architecture | Download | Runs fast on |
 |---|---|---|
@@ -77,25 +80,27 @@ work the same way, but we have not tested them yet: please tell us.
 - The root file system is a folder on your computer, shared into the guest.
   Start one guest per folder.
 - A small desktop in software, with sound: `./run.sh --gui`. No 3D yet, and no
-  web browser. Sound needs CoreAudio on macOS, or a PipeWire or PulseAudio server
+  graphical web browser. Sound needs CoreAudio on macOS, or a PipeWire or PulseAudio server
   on Linux; otherwise the desktop runs silently.
 - Some Linux-only tools (procps, iproute2) have small NuttX replacements
   (`nuttian-tools`).
+- `./share`, next to `run.sh`, is a folder of your computer that the guest can
+  use too: `mount -t v9fs -o trans=virtio,tag=host /mnt` in the guest.
 
 ## Source code
 
 Every binary package in the images and in the archive comes from a source
-package in the same archive. Each package's sheet on
+package in the same archive: <https://archive.nuttian.org/poc-14/index.html>
+lists them all, with their files. Each package's sheet on
 <https://packages.nuttian.org/> links its source files and lists what Nuttian
 changes for NuttX, and why.
 
-To get the source in the guest, first add `deb-src` to the source list, in
-a directory on the root file system (`/tmp` is small):
+The images have `deb-src` in their source list. To get the source in the
+guest, work in a directory on the root file system (`/tmp` is small):
 
 ```sh
-sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/nuttian.sources
-apt update
 apt install dpkg-dev
+mkdir -p ~/src && cd ~/src
 apt source <package>
 ```
 
