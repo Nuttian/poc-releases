@@ -50,11 +50,14 @@ work the same way, but we have not tested them yet: please tell us.
 
    ```sh
    ARCH=arm64     # or amd64, riscv64
-   curl -LO https://github.com/Nuttian/poc-releases/releases/latest/download/nuttian-nxsid-$ARCH.tar.xz
+   curl -LO https://archive.nuttian.org/releases/poc-14.1/nuttian-nxsid-$ARCH.tar.xz
    tar xf nuttian-nxsid-$ARCH.tar.xz
    cd nuttian-nxsid-$ARCH
    ./run.sh
    ```
+
+   The same files are attached to the [latest release](https://github.com/Nuttian/poc-releases/releases/latest)
+   here.
 
    `run.sh` finds QEMU, uses hardware acceleration when it can, and on
    macOS puts the root file system on a case-sensitive disk image. Run it
