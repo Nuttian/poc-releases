@@ -11,12 +11,13 @@ images for QEMU. The packages themselves come from
 
 ## Releases
 
-The current release is **poc-14.1**. Each binary interface (ABI) of the
+The current release is **poc-15.1**. Each binary interface (ABI) of the
 kernel and the C library has its own archive tree on archive.nuttian.org, so a
-system never mixes two; poc-14.1 uses `poc-14`. A newer release of the same ABI
-(a point release) replaces the packages of its tree: then download its image, as an
-older image that installs or upgrades packages gets a C library that its
-kernel may not run. Each release has one download per architecture:
+system never mixes two; poc-15.1 uses `poc-15`. A newer release of the same ABI
+(a point release) replaces the packages of its tree. We keep only the current
+release: when a new ABI comes out, the older images and their archive tree are
+deleted, so an older image can no longer install packages: download the new
+image. Each release has one download per architecture:
 
 | Architecture | Download | Runs fast on |
 |---|---|---|
@@ -50,7 +51,7 @@ work the same way, but we have not tested them yet: please tell us.
 
    ```sh
    ARCH=arm64     # or amd64, riscv64
-   curl -LO https://archive.nuttian.org/releases/poc-14.1/nuttian-nxsid-$ARCH.tar.xz
+   curl -LO https://archive.nuttian.org/releases/poc-15.1/nuttian-nxsid-$ARCH.tar.xz
    tar xf nuttian-nxsid-$ARCH.tar.xz
    cd nuttian-nxsid-$ARCH
    ./run.sh
@@ -82,8 +83,10 @@ work the same way, but we have not tested them yet: please tell us.
 - The binary interface can change between proof-of-concept releases.
 - The root file system is a folder on your computer, shared into the guest.
   Start one guest per folder.
-- A small desktop in software, with sound: `./run.sh --gui`. No 3D yet, and no
-  graphical web browser. Sound needs CoreAudio on macOS, or a PipeWire or PulseAudio server
+- A small desktop with sound: `./run.sh --gui`. OpenGL and OpenGL ES in software
+  (Mesa); `./run.sh --gui --gl` draws on the host's GPU where QEMU has virgl
+  (most Linux distributions; not Homebrew's QEMU on macOS). GTK 3, Qt 6, Tk and
+  X11 programs install with apt. No graphical web browser. Sound needs CoreAudio on macOS, or a PipeWire or PulseAudio server
   on Linux; otherwise the desktop runs silently.
 - Some Linux-only tools (procps, iproute2) have small NuttX replacements
   (`nuttian-tools`).
@@ -93,7 +96,7 @@ work the same way, but we have not tested them yet: please tell us.
 ## Source code
 
 Every binary package in the images and in the archive comes from a source
-package in the same archive: <https://archive.nuttian.org/poc-14/index.html>
+package in the same archive: <https://archive.nuttian.org/poc-15/index.html>
 lists them all, with their files. Each package's sheet on
 <https://packages.nuttian.org/> links its source files and lists what Nuttian
 changes for NuttX, and why.
